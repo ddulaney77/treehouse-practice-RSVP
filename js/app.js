@@ -34,7 +34,47 @@ li.appendChild = ('label');//appends the label to the list element
 //*********** ADD A HANDLER TO THE CHECKBOX  ****************
 //add a handler so when the checkbox is checked, it addds a class of 'responded' to the list item
 //add event handler to add the new class
+//to add an event listener to any new list item, use event bubbling and add the handler to one element, the i; tag holding the list items and checkboxes.
+//use the change event with checkboxes to see when a checkbox has changed from checked to unchecked or unchecked to checked.
+//call addEventListener on the ul element - select it first// we alreay used const u; in prevous handler so it needs to be outside the cunction as a gloabl function to use in more place
+//put const ul = document.getElementById('invitedList'); outside at the top as a global function.
+// ******* BUILDING A CHANGE EVENT HANDLER ****************
+ul.addEventListener('change' (e) => {
+  const checkbox = event.target;          // get a reference to the checkbox
+  //once we have the value of the checkbox, which is true if box is checked, or false if it is not checked, will be stroed in a variable anmed checked.
+  const checked = checkbox.checked;
+  //since we will change the class of the list item, when the box is checked, we need a reference to the list item.
+  // li is the checkbox grandparent
+  //label is the child of list itemcheckbox is the child of label
+  //traverse the DOM by calling the parentNode 2x to get to grandparent
+  //parentNode goes once to label element
+  //parentNode parentNode goes to list item
+  const list item = checkbox.parentNode.parentNode;
+  //set the class name of the list item to responded if checked is true, or remove the class is checked is false** conditional statement ***
+  if (checked){
+    listItem.className = 'responded';
+  } else {
+    listItem.className = '';
+  }
 
+  /// **** we just added a delegated handler that marks off when they responded *****////
+
+  // ***  REMOVING NAMES ***********
+  //provide a way to remove names from a list
+  //add a remove button to each list item, so clicking the button deleltes the names
+  // add the remove button as a child to each list ite, right below the label and checkbox we added.
+  //can copy the code we used to create, append and edit checkbox
+            // const checkbox =document.createElement('checkbox');
+            // checkbox.type = 'Checkbox';
+            // label.appendChild(checkbox);
+//paste below it where we append label to li and change to..
+const button = document.createElement('button');
+button.textContent = 'remove';
+li.appendChild(button);  //appends button to the list items
+
+
+
+})
 
 
 
